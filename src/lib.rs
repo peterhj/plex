@@ -7,7 +7,6 @@
 extern crate lalr;
 extern crate proc_macro2;
 extern crate proc_macro;
-#[cfg(feature = "parser")]
 #[macro_use]
 extern crate quote;
 #[cfg(feature = "lexer")]

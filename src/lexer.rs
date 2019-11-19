@@ -257,7 +257,7 @@ pub fn lexer(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
     };
     let lifetime = &lifetime; // jank
     quote!(
-        #vis fn #name #(<#lifetime>)* (input: &#(#lifetime)* str) -> Option<(#return_type, &#(#lifetime)* str)> {
+        #vis fn #name #(<#lifetime>)* (input: &#(#lifetime)* str) -> Option<(#return_type, &#(#lifetime)* str, &#(#lifetime)* str)> {
             #[derive(Copy, Clone)]
             #[allow(non_camel_case_types)]
             enum State {
@@ -291,7 +291,7 @@ pub fn lexer(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
                 };
                 let #input = &input[..ix];
                 let rule_result = #compute_result;
-                Some((rule_result, &input[ix..]))
+                Some((rule_result, #input, &input[ix..]))
             } else {
                 None
             }
